@@ -25,7 +25,12 @@ export const ScoreBoard = (
       BoardStatus.Started,
       increasePlayerScore(initialFirstPlayerScore),
       initialSecondPlayerScore
-    )
+    ),
+    secondPlayerMakeThePoint: () => ScoreBoard(
+      BoardStatus.Started,
+      initialFirstPlayerScore,
+      increasePlayerScore(initialSecondPlayerScore)
+    ),
   });
 }
 

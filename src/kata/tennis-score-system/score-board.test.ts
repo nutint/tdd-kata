@@ -36,7 +36,7 @@ describe('ScoreBoard', () => {
     })
   })
 
-  describe('xPlayerMakeThePoint', () => {
+  describe('firstPlayerMakeThePoint', () => {
     it('started at 0-0, when first player make the point should become 15-0', () => {
       const actual = ScoreBoard().firstPlayerMakeThePoint()
 
@@ -67,6 +67,41 @@ describe('ScoreBoard', () => {
 
       expect(actual.firstPlayerScore).toEqual(PlayerScore.Forty)
       expect(actual.secondPlayerScore).toEqual(PlayerScore.Love)
+    })
+  })
+
+
+  describe('secondPlayerMakeThePoint', () => {
+    it('started at 0-0, when second player make the point should become 0-15', () => {
+      const actual = ScoreBoard().secondPlayerMakeThePoint()
+
+      expect(actual.secondPlayerScore).toEqual(PlayerScore.Fifteen)
+      expect(actual.firstPlayerScore).toEqual(PlayerScore.Love)
+    })
+
+    it('started at 0-0, when second player make the point should have status started', () => {
+      const actual = ScoreBoard().secondPlayerMakeThePoint()
+
+      expect(actual.boardStatus).toEqual(BoardStatus.Started)
+    })
+
+    it('started at 0-0, when second player make the point 2 times should become 0-30', () => {
+      const actual = ScoreBoard()
+        .secondPlayerMakeThePoint()
+        .secondPlayerMakeThePoint()
+
+      expect(actual.secondPlayerScore).toEqual(PlayerScore.Thirty)
+      expect(actual.firstPlayerScore).toEqual(PlayerScore.Love)
+    })
+
+    it('started at 0-0, when second player make the point 3 times should become 0-40', () => {
+      const actual = ScoreBoard()
+        .secondPlayerMakeThePoint()
+        .secondPlayerMakeThePoint()
+        .secondPlayerMakeThePoint()
+
+      expect(actual.secondPlayerScore).toEqual(PlayerScore.Forty)
+      expect(actual.firstPlayerScore).toEqual(PlayerScore.Love)
     })
   })
 })
