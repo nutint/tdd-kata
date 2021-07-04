@@ -104,4 +104,20 @@ describe('ScoreBoard', () => {
       expect(actual.firstPlayerScore).toEqual(PlayerScore.Love)
     })
   })
+
+  describe('deuce', () => {
+    it('should become deuce when start from 30-40 and first player score', () => {
+      const actual = ScoreBoard(BoardStatus.Started, PlayerScore.Thirty, PlayerScore.Forty)
+        .firstPlayerMakeThePoint()
+
+      expect(actual.boardStatus).toEqual(BoardStatus.Deuce)
+    })
+
+    it('should become deuce when start from 30-40 and first player score', () => {
+      const actual = ScoreBoard(BoardStatus.Started, PlayerScore.Forty, PlayerScore.Thirty)
+        .secondPlayerMakeThePoint()
+
+      expect(actual.boardStatus).toEqual(BoardStatus.Deuce)
+    })
+  })
 })

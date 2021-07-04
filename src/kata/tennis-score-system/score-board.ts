@@ -21,16 +21,30 @@ export const ScoreBoard = (
     boardStatus: boardStatus || 'notStarted',
     firstPlayerScore: initialFirstPlayerScore,
     secondPlayerScore: initialSecondPlayerScore,
-    firstPlayerMakeThePoint: () => ScoreBoard(
-      BoardStatus.Started,
-      increasePlayerScore(initialFirstPlayerScore),
-      initialSecondPlayerScore
-    ),
-    secondPlayerMakeThePoint: () => ScoreBoard(
-      BoardStatus.Started,
-      initialFirstPlayerScore,
-      increasePlayerScore(initialSecondPlayerScore)
-    ),
+    firstPlayerMakeThePoint: () => {
+      if(initialFirstPlayerScore === PlayerScore.Thirty && initialSecondPlayerScore === PlayerScore.Forty) {
+        return ScoreBoard(
+          BoardStatus.Deuce
+        )
+      }
+      return ScoreBoard(
+        BoardStatus.Started,
+        increasePlayerScore(initialFirstPlayerScore),
+        initialSecondPlayerScore
+      )
+    },
+    secondPlayerMakeThePoint: () => {
+      if(initialFirstPlayerScore === PlayerScore.Forty && initialSecondPlayerScore === PlayerScore.Thirty) {
+        return ScoreBoard(
+          BoardStatus.Deuce
+        )
+      }
+      return ScoreBoard(
+        BoardStatus.Started,
+        initialFirstPlayerScore,
+        increasePlayerScore(initialSecondPlayerScore)
+      )
+    },
   });
 }
 
