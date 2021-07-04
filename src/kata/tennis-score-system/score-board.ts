@@ -1,3 +1,15 @@
+
+function increasePlayerScore(initialFirstPlayerScore: PlayerScore) {
+  switch (initialFirstPlayerScore) {
+    case PlayerScore.Love:
+      return PlayerScore.Fifteen;
+    case PlayerScore.Fifteen:
+      return PlayerScore.Thirty;
+    default:
+      return PlayerScore.Forty;
+  }
+}
+
 export const ScoreBoard = (
   boardStatus?: BoardStatus,
   firstPlayerScore?: PlayerScore,
@@ -11,7 +23,7 @@ export const ScoreBoard = (
     secondPlayerScore: initialSecondPlayerScore,
     firstPlayerMakeThePoint: () => ScoreBoard(
       BoardStatus.Started,
-      initialFirstPlayerScore === PlayerScore.Love ? PlayerScore.Fifteen : PlayerScore.Thirty,
+      increasePlayerScore(initialFirstPlayerScore),
       initialSecondPlayerScore
     )
   });
@@ -21,6 +33,7 @@ export enum PlayerScore {
   Love = '0',
   Fifteen = '15',
   Thirty = '30',
+  Forty = '40',
 }
 
 export enum BoardStatus {
