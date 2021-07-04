@@ -58,5 +58,15 @@ describe('ScoreBoard', () => {
       expect(actual.firstPlayerScore).toEqual(PlayerScore.Thirty)
       expect(actual.secondPlayerScore).toEqual(PlayerScore.Love)
     })
+
+    it('started at 0-0, when first player make the point 3 times should become 40-0', () => {
+      const actual = ScoreBoard()
+        .firstPlayerMakeThePoint()
+        .firstPlayerMakeThePoint()
+        .firstPlayerMakeThePoint()
+
+      expect(actual.firstPlayerScore).toEqual(PlayerScore.Forty)
+      expect(actual.secondPlayerScore).toEqual(PlayerScore.Love)
+    })
   })
 })
