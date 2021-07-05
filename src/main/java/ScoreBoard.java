@@ -33,13 +33,19 @@ public class ScoreBoard {
                 this.firstPlayerScore = Score.FORTY;
                 if (this.firstPlayerScore == this.secondPlayerScore) {
                     this.boardState = BoardState.DEUCE;
+                    this.firstPlayerScore = Score.ZERO;
+                    this.secondPlayerScore = Score.ZERO;
                 }
                 break;
-            default:
-                if (Score.FORTY == this.firstPlayerScore && Math.abs(this.firstPlayerScore.getPoint() - this.secondPlayerScore.getPoint()) >= 2) {
+            case FORTY:
+                if (Math.abs(this.firstPlayerScore.getPoint() - this.secondPlayerScore.getPoint()) >= 2) {
                     this.boardState = BoardState.FINISHED;
                     this.firstPlayerScore = Score.WIN;
                 }
+                break;
+            case ZERO:
+                this.boardState = BoardState.ADVANTAGE;
+                this.firstPlayerScore = Score.ADVANTAGE;
                 break;
         }
     }
@@ -56,13 +62,19 @@ public class ScoreBoard {
                 this.secondPlayerScore = Score.FORTY;
                 if (this.firstPlayerScore == this.secondPlayerScore) {
                     this.boardState = BoardState.DEUCE;
+                    this.firstPlayerScore = Score.ZERO;
+                    this.secondPlayerScore = Score.ZERO;
                 }
                 break;
-            default:
-                if (Score.FORTY == this.secondPlayerScore && Math.abs(this.firstPlayerScore.getPoint() - this.secondPlayerScore.getPoint()) >= 2) {
+            case FORTY:
+                if (Math.abs(this.firstPlayerScore.getPoint() - this.secondPlayerScore.getPoint()) >= 2) {
                     this.boardState = BoardState.FINISHED;
                     this.secondPlayerScore = Score.WIN;
                 }
+                break;
+            case ZERO:
+                this.boardState = BoardState.ADVANTAGE;
+                this.secondPlayerScore = Score.ADVANTAGE;
                 break;
         }
     }
