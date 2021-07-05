@@ -1,12 +1,12 @@
 public class ScoreBoard {
     private String boardState;
-    private int firstPlayerScore;
-    private int secondPlayerScore;
+    private Score firstPlayerScore;
+    private Score secondPlayerScore;
 
     ScoreBoard() {
         this.boardState = BoardState.STARTED;
-        this.firstPlayerScore = Score.LOVE.getPoint();
-        this.secondPlayerScore = Score.LOVE.getPoint();
+        this.firstPlayerScore = Score.LOVE;
+        this.secondPlayerScore = Score.LOVE;
     }
 
     public String getBoardState() {
@@ -14,36 +14,56 @@ public class ScoreBoard {
     }
 
     public Score getFirstPlayerScore() {
-        return Score.findScore(firstPlayerScore);
+        return this.firstPlayerScore;
     }
 
     public Score getSecondPlayerScore() {
-        return Score.findScore(secondPlayerScore);
+        return this.secondPlayerScore;
     }
 
     public void firstPlayerMakeScore() {
-        this.firstPlayerScore++;
-
-        if (this.firstPlayerScore == Score.FORTY.getPoint() && this.firstPlayerScore == this.secondPlayerScore) {
-            this.boardState = BoardState.DEUCE;
-        }
-
-        if (this.firstPlayerScore > Score.FORTY.getPoint() && this.firstPlayerScore - this.secondPlayerScore >= 2) {
-            this.firstPlayerScore = Score.WIN.getPoint();
-            this.boardState = BoardState.FINISHED;
+        switch (this.firstPlayerScore) {
+            case LOVE:
+                this.firstPlayerScore = Score.FIFTEEN;
+                break;
+            case FIFTEEN:
+                this.firstPlayerScore = Score.THIRTY;
+                break;
+            case THIRTY:
+                this.firstPlayerScore = Score.FORTY;
+                if (this.firstPlayerScore == this.secondPlayerScore) {
+                    this.boardState = BoardState.DEUCE;
+                }
+                break;
+            default:
+                if (Score.FORTY == this.firstPlayerScore && Math.abs(this.firstPlayerScore.getPoint() - this.secondPlayerScore.getPoint()) >= 2) {
+                    this.boardState = BoardState.FINISHED;
+                    this.firstPlayerScore = Score.WIN;
+                }
+                break;
         }
     }
 
     public void secondPlayerMakeScore() {
-        this.secondPlayerScore++;
-
-        if (this.secondPlayerScore == Score.FORTY.getPoint() && this.secondPlayerScore == this.firstPlayerScore) {
-            this.boardState = BoardState.DEUCE;
-        }
-
-        if (this.secondPlayerScore > Score.FORTY.getPoint() && this.secondPlayerScore - this.firstPlayerScore >= 2) {
-            this.secondPlayerScore = Score.WIN.getPoint();
-            this.boardState = BoardState.FINISHED;
+        switch (this.secondPlayerScore) {
+            case LOVE:
+                this.secondPlayerScore = Score.FIFTEEN;
+                break;
+            case FIFTEEN:
+                this.secondPlayerScore = Score.THIRTY;
+                break;
+            case THIRTY:
+                this.secondPlayerScore = Score.FORTY;
+                if (this.firstPlayerScore == this.secondPlayerScore) {
+                    this.boardState = BoardState.DEUCE;
+                }
+                break;
+            default:
+                if (Score.FORTY == this.secondPlayerScore && Math.abs(this.firstPlayerScore.getPoint() - this.secondPlayerScore.getPoint()) >= 2) {
+                    this.boardState = BoardState.FINISHED;
+                    this.secondPlayerScore = Score.WIN;
+                }
+                break;
         }
     }
 }

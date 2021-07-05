@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -12,6 +13,7 @@ public class ScoreBoardTest {
     }
 
     @Test
+    @DisplayName("Start Game with 0-0")
     public void eachGameShouldStartWithInitialState() {
         assertEquals(scoreBoard.getBoardState(), BoardState.STARTED);
         assertEquals(scoreBoard.getFirstPlayerScore(), Score.LOVE);
@@ -19,6 +21,7 @@ public class ScoreBoardTest {
     }
 
     @Test
+    @DisplayName("First player score 15-0")
     public void firstPlayerMakeFirstScore() {
         scoreBoard.firstPlayerMakeScore();
 
@@ -28,6 +31,7 @@ public class ScoreBoardTest {
     }
 
     @Test
+    @DisplayName("First player score 30-0")
     public void firstPlayerMakeSecondScore() {
         scoreBoard.firstPlayerMakeScore();
         scoreBoard.firstPlayerMakeScore();
@@ -38,6 +42,7 @@ public class ScoreBoardTest {
     }
 
     @Test
+    @DisplayName("First player score 40-0")
     public void firstPlayerMakeThirdScore() {
         scoreBoard.firstPlayerMakeScore();
         scoreBoard.firstPlayerMakeScore();
@@ -49,6 +54,7 @@ public class ScoreBoardTest {
     }
 
     @Test
+    @DisplayName("Second player score 0-15")
     public void secondPlayerMakeFirstScore() {
         scoreBoard.secondPlayerMakeScore();
 
@@ -58,6 +64,7 @@ public class ScoreBoardTest {
     }
 
     @Test
+    @DisplayName("Second player score 0-30")
     public void secondPlayerMakeSecondScore() {
         scoreBoard.secondPlayerMakeScore();
         scoreBoard.secondPlayerMakeScore();
@@ -68,6 +75,7 @@ public class ScoreBoardTest {
     }
 
     @Test
+    @DisplayName("Second player score 0-40")
     public void secondPlayerMakeThirdScore() {
         scoreBoard.secondPlayerMakeScore();
         scoreBoard.secondPlayerMakeScore();
@@ -79,6 +87,7 @@ public class ScoreBoardTest {
     }
 
     @Test
+    @DisplayName("First player win the game WIN-0")
     public void firstPlayerWinTheGame() {
         scoreBoard.firstPlayerMakeScore();
         scoreBoard.firstPlayerMakeScore();
@@ -91,6 +100,7 @@ public class ScoreBoardTest {
     }
 
     @Test
+    @DisplayName("Second player win the game 0-WIN")
     public void secondPlayerWinTheGame() {
         scoreBoard.secondPlayerMakeScore();
         scoreBoard.secondPlayerMakeScore();
@@ -103,6 +113,7 @@ public class ScoreBoardTest {
     }
 
     @Test
+    @DisplayName("Deuce 40-40")
     public void startingDeuce() {
         scoreBoard.firstPlayerMakeScore();
         scoreBoard.firstPlayerMakeScore();
@@ -111,7 +122,8 @@ public class ScoreBoardTest {
         scoreBoard.secondPlayerMakeScore();
         scoreBoard.secondPlayerMakeScore();
 
-        assertEquals(scoreBoard.getFirstPlayerScore(), scoreBoard.getSecondPlayerScore());
+        assertEquals(Score.FORTY, scoreBoard.getFirstPlayerScore());
+        assertEquals(Score.FORTY, scoreBoard.getSecondPlayerScore());
         assertEquals(BoardState.DEUCE, scoreBoard.getBoardState());
     }
 }
