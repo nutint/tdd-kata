@@ -5,8 +5,8 @@ public class ScoreBoard {
 
     ScoreBoard() {
         this.boardState = BoardState.STARTED;
-        this.firstPlayerScore = 0;
-        this.secondPlayerScore = 0;
+        this.firstPlayerScore = Score.LOVE.getPoint();
+        this.secondPlayerScore = Score.LOVE.getPoint();
     }
 
     public String getBoardState() {
