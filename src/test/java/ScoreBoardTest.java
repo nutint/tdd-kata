@@ -13,6 +13,7 @@ public class ScoreBoardTest {
 
     @Test
     public void eachGameShouldStartWithInitialState() {
+        assertEquals(scoreBoard.getBoardState(), BoardState.STARTED);
         assertEquals(scoreBoard.getFirstPlayerScore(), Score.LOVE);
         assertEquals(scoreBoard.getSecondPlayerScore(), Score.LOVE);
     }

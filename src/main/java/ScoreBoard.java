@@ -4,7 +4,7 @@ public class ScoreBoard {
     private int secondPlayerScore;
 
     ScoreBoard() {
-        this.boardState = "started";
+        this.boardState = BoardState.STARTED;
         this.firstPlayerScore = 0;
         this.secondPlayerScore = 0;
     }
