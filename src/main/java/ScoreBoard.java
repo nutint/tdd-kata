@@ -44,8 +44,13 @@ public class ScoreBoard {
                 }
                 break;
             case ZERO:
-                this.boardState = BoardState.ADVANTAGE;
-                this.firstPlayerScore = Score.ADVANTAGE;
+                if (Score.ADVANTAGE == this.secondPlayerScore) {
+                    this.boardState = BoardState.DEUCE;
+                    this.secondPlayerScore = Score.ZERO;
+                } else {
+                    this.boardState = BoardState.ADVANTAGE;
+                    this.firstPlayerScore = Score.ADVANTAGE;
+                }
                 break;
         }
     }
@@ -73,8 +78,13 @@ public class ScoreBoard {
                 }
                 break;
             case ZERO:
-                this.boardState = BoardState.ADVANTAGE;
-                this.secondPlayerScore = Score.ADVANTAGE;
+                if (Score.ADVANTAGE == this.firstPlayerScore) {
+                    this.boardState = BoardState.DEUCE;
+                    this.firstPlayerScore = Score.ZERO;
+                } else {
+                    this.boardState = BoardState.ADVANTAGE;
+                    this.secondPlayerScore = Score.ADVANTAGE;
+                }
                 break;
         }
     }
