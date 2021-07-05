@@ -8,6 +8,7 @@ public enum Score {
     FIFTEEN(1, "15"),
     THIRTY(2, "30"),
     FORTY(3, "40"),
+    WIN(4, "WIN"),
     OTHER(99, "NO VALUE");
 
     private final int point;

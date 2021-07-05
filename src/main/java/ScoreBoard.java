@@ -27,6 +27,11 @@ public class ScoreBoard {
         if (this.firstPlayerScore == Score.FORTY.getPoint() && this.firstPlayerScore == this.secondPlayerScore) {
             this.boardState = BoardState.DEUCE;
         }
+
+        if (this.firstPlayerScore > Score.FORTY.getPoint() && this.firstPlayerScore - this.secondPlayerScore >= 2) {
+            this.firstPlayerScore = Score.WIN.getPoint();
+            this.boardState = BoardState.FINISHED;
+        }
     }
 
     public void secondPlayerMakeScore() {
@@ -34,6 +39,11 @@ public class ScoreBoard {
 
         if (this.secondPlayerScore == Score.FORTY.getPoint() && this.secondPlayerScore == this.firstPlayerScore) {
             this.boardState = BoardState.DEUCE;
+        }
+
+        if (this.secondPlayerScore > Score.FORTY.getPoint() && this.secondPlayerScore - this.firstPlayerScore >= 2) {
+            this.secondPlayerScore = Score.WIN.getPoint();
+            this.boardState = BoardState.FINISHED;
         }
     }
 }
