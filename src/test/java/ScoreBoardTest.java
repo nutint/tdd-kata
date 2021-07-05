@@ -194,4 +194,40 @@ public class ScoreBoardTest {
         assertEquals(Score.ZERO, scoreBoard.getSecondPlayerScore());
         assertEquals(BoardState.DEUCE, scoreBoard.getBoardState());
     }
+
+    @Test
+    @DisplayName("First player win the Deuce")
+    public void firstPlayerWinDeuce() {
+        scoreBoard.firstPlayerMakeScore();
+        scoreBoard.firstPlayerMakeScore();
+        scoreBoard.firstPlayerMakeScore();
+        scoreBoard.secondPlayerMakeScore();
+        scoreBoard.secondPlayerMakeScore();
+        scoreBoard.secondPlayerMakeScore();
+
+        scoreBoard.firstPlayerMakeScore();
+        scoreBoard.firstPlayerMakeScore();
+
+        assertEquals(Score.WIN_DEUCE, scoreBoard.getFirstPlayerScore());
+        assertEquals(Score.ZERO, scoreBoard.getSecondPlayerScore());
+        assertEquals(BoardState.FINISHED, scoreBoard.getBoardState());
+    }
+
+    @Test
+    @DisplayName("Second player win the Deuce")
+    public void secondPlayerWinDeuce() {
+        scoreBoard.firstPlayerMakeScore();
+        scoreBoard.firstPlayerMakeScore();
+        scoreBoard.firstPlayerMakeScore();
+        scoreBoard.secondPlayerMakeScore();
+        scoreBoard.secondPlayerMakeScore();
+        scoreBoard.secondPlayerMakeScore();
+
+        scoreBoard.secondPlayerMakeScore();
+        scoreBoard.secondPlayerMakeScore();
+
+        assertEquals(Score.ZERO, scoreBoard.getFirstPlayerScore());
+        assertEquals(Score.WIN_DEUCE, scoreBoard.getSecondPlayerScore());
+        assertEquals(BoardState.FINISHED, scoreBoard.getBoardState());
+    }
 }

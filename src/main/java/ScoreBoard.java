@@ -52,6 +52,12 @@ public class ScoreBoard {
                     this.firstPlayerScore = Score.ADVANTAGE;
                 }
                 break;
+            case ADVANTAGE:
+                this.firstPlayerScore = Score.WIN_DEUCE;
+                if (Math.abs(this.firstPlayerScore.getPoint() - this.secondPlayerScore.getPoint()) >= 2) {
+                    this.boardState = BoardState.FINISHED;
+                }
+                break;
         }
     }
 
@@ -84,6 +90,12 @@ public class ScoreBoard {
                 } else {
                     this.boardState = BoardState.ADVANTAGE;
                     this.secondPlayerScore = Score.ADVANTAGE;
+                }
+                break;
+            case ADVANTAGE:
+                this.secondPlayerScore = Score.WIN_DEUCE;
+                if (Math.abs(this.firstPlayerScore.getPoint() - this.secondPlayerScore.getPoint()) >= 2) {
+                    this.boardState = BoardState.FINISHED;
                 }
                 break;
         }
