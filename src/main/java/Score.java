@@ -11,19 +11,8 @@ public enum Score {
     WIN(4, "win"),
     ZERO(0, "zero"),
     ADVANTAGE(1, "advantage"),
-    WIN_DEUCE(2, "win deuce"),
-    OTHER(99, "NO VALUE");
+    WIN_DEUCE(2, "win deuce");
 
     private final int point;
     private final String displayScore;
-
-    public static Score findScore(int point) {
-        for (Score score : Score.values()) {
-            if (score.point == point) {
-                return score;
-            }
-        }
-        return OTHER;
-    }
-
 }
