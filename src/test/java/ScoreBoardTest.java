@@ -230,4 +230,28 @@ public class ScoreBoardTest {
         assertEquals(Score.WIN_DEUCE, scoreBoard.getSecondPlayerScore());
         assertEquals(BoardState.FINISHED, scoreBoard.getBoardState());
     }
+
+    @Test
+    @DisplayName("Each player call the Deuce again and again (three times)")
+    public void callDeuceThirdTime() {
+        scoreBoard.firstPlayerMakeScore();
+        scoreBoard.firstPlayerMakeScore();
+        scoreBoard.firstPlayerMakeScore();
+        scoreBoard.secondPlayerMakeScore();
+        scoreBoard.secondPlayerMakeScore();
+        scoreBoard.secondPlayerMakeScore();
+
+        scoreBoard.firstPlayerMakeScore();
+        scoreBoard.secondPlayerMakeScore();
+
+        scoreBoard.firstPlayerMakeScore();
+        scoreBoard.secondPlayerMakeScore();
+
+        scoreBoard.secondPlayerMakeScore();
+        scoreBoard.firstPlayerMakeScore();
+
+        assertEquals(Score.ZERO, scoreBoard.getFirstPlayerScore());
+        assertEquals(Score.ZERO, scoreBoard.getSecondPlayerScore());
+        assertEquals(BoardState.DEUCE, scoreBoard.getBoardState());
+    }
 }
