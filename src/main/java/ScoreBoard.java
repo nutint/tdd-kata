@@ -1,7 +1,3 @@
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
-@Data
 public class ScoreBoard {
     private String boardState;
     private int firstPlayerScore;
@@ -11,6 +7,18 @@ public class ScoreBoard {
         this.boardState = "started";
         this.firstPlayerScore = 0;
         this.secondPlayerScore = 0;
+    }
+
+    public String getBoardState() {
+        return boardState;
+    }
+
+    public Score getFirstPlayerScore() {
+        return Score.findScore(firstPlayerScore);
+    }
+
+    public Score getSecondPlayerScore() {
+        return Score.findScore(secondPlayerScore);
     }
 
     public void firstPlayerMakeScore() {

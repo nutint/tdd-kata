@@ -13,23 +13,23 @@ public class ScoreBoardTest {
 
     @Test
     public void eachGameShouldStartWithInitialState() {
-        assertEquals(scoreBoard.getFirstPlayerScore(), 0);
-        assertEquals(scoreBoard.getSecondPlayerScore(), 0);
+        assertEquals(scoreBoard.getFirstPlayerScore(), Score.LOVE);
+        assertEquals(scoreBoard.getSecondPlayerScore(), Score.LOVE);
     }
 
     @Test
     public void firstPlayerMakeFirstScore() {
         scoreBoard.firstPlayerMakeScore();
-        assertEquals(scoreBoard.getFirstPlayerScore(), 1);
-        assertEquals(scoreBoard.getSecondPlayerScore(), 0);
+        assertEquals(scoreBoard.getFirstPlayerScore(), Score.FIFTEEN);
+        assertEquals(scoreBoard.getSecondPlayerScore(), Score.LOVE);
     }
 
     @Test
     public void firstPlayerMakeSecondScore() {
         scoreBoard.firstPlayerMakeScore();
         scoreBoard.firstPlayerMakeScore();
-        assertEquals(scoreBoard.getFirstPlayerScore(), 2);
-        assertEquals(scoreBoard.getSecondPlayerScore(), 0);
+        assertEquals(scoreBoard.getFirstPlayerScore(), Score.THIRTY);
+        assertEquals(scoreBoard.getSecondPlayerScore(), Score.LOVE);
     }
 
     @Test
@@ -37,23 +37,23 @@ public class ScoreBoardTest {
         scoreBoard.firstPlayerMakeScore();
         scoreBoard.firstPlayerMakeScore();
         scoreBoard.firstPlayerMakeScore();
-        assertEquals(scoreBoard.getFirstPlayerScore(), 3);
-        assertEquals(scoreBoard.getSecondPlayerScore(), 0);
+        assertEquals(scoreBoard.getFirstPlayerScore(), Score.FORTY);
+        assertEquals(scoreBoard.getSecondPlayerScore(), Score.LOVE);
     }
 
     @Test
     public void secondPlayerMakeFirstScore() {
         scoreBoard.secondPlayerMakeScore();
-        assertEquals(scoreBoard.getFirstPlayerScore(), 0);
-        assertEquals(scoreBoard.getSecondPlayerScore(), 1);
+        assertEquals(scoreBoard.getFirstPlayerScore(), Score.LOVE);
+        assertEquals(scoreBoard.getSecondPlayerScore(), Score.FIFTEEN);
     }
 
     @Test
     public void secondPlayerMakeSecondScore() {
         scoreBoard.secondPlayerMakeScore();
         scoreBoard.secondPlayerMakeScore();
-        assertEquals(scoreBoard.getFirstPlayerScore(), 0);
-        assertEquals(scoreBoard.getSecondPlayerScore(), 2);
+        assertEquals(scoreBoard.getFirstPlayerScore(), Score.LOVE);
+        assertEquals(scoreBoard.getSecondPlayerScore(), Score.THIRTY);
     }
 
     @Test
@@ -61,7 +61,7 @@ public class ScoreBoardTest {
         scoreBoard.secondPlayerMakeScore();
         scoreBoard.secondPlayerMakeScore();
         scoreBoard.secondPlayerMakeScore();
-        assertEquals(scoreBoard.getFirstPlayerScore(), 0);
-        assertEquals(scoreBoard.getSecondPlayerScore(), 3);
+        assertEquals(scoreBoard.getFirstPlayerScore(), Score.LOVE);
+        assertEquals(scoreBoard.getSecondPlayerScore(), Score.FORTY);
     }
 }
