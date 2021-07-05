@@ -23,9 +23,17 @@ public class ScoreBoard {
 
     public void firstPlayerMakeScore() {
         this.firstPlayerScore++;
+
+        if (this.firstPlayerScore == Score.FORTY.getPoint() && this.firstPlayerScore == this.secondPlayerScore) {
+            this.boardState = BoardState.DEUCE;
+        }
     }
 
     public void secondPlayerMakeScore() {
         this.secondPlayerScore++;
+
+        if (this.secondPlayerScore == Score.FORTY.getPoint() && this.secondPlayerScore == this.firstPlayerScore) {
+            this.boardState = BoardState.DEUCE;
+        }
     }
 }

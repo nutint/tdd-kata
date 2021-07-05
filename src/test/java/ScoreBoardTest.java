@@ -65,4 +65,16 @@ public class ScoreBoardTest {
         assertEquals(scoreBoard.getFirstPlayerScore(), Score.LOVE);
         assertEquals(scoreBoard.getSecondPlayerScore(), Score.FORTY);
     }
+
+    @Test
+    public void startingDeuce() {
+        scoreBoard.firstPlayerMakeScore();
+        scoreBoard.firstPlayerMakeScore();
+        scoreBoard.firstPlayerMakeScore();
+        scoreBoard.secondPlayerMakeScore();
+        scoreBoard.secondPlayerMakeScore();
+        scoreBoard.secondPlayerMakeScore();
+
+        assertEquals(BoardState.DEUCE, scoreBoard.getBoardState());
+    }
 }
