@@ -1,14 +1,6 @@
-
-function increasePlayerScore(initialFirstPlayerScore: PlayerScore) {
-  switch (initialFirstPlayerScore) {
-    case PlayerScore.Love:
-      return PlayerScore.Fifteen;
-    case PlayerScore.Fifteen:
-      return PlayerScore.Thirty;
-    default:
-      return PlayerScore.Forty;
-  }
-}
+import {PlayerScore} from "./player-score";
+import {BoardStatus} from "./board-status";
+import {increasePlayerScore} from "./increase-player-score";
 
 export const ScoreBoard = (
   boardStatus?: BoardStatus,
@@ -48,15 +40,3 @@ export const ScoreBoard = (
   });
 }
 
-export enum PlayerScore {
-  Love = '0',
-  Fifteen = '15',
-  Thirty = '30',
-  Forty = '40',
-}
-
-export enum BoardStatus {
-  NotStarted = 'notStarted',
-  Started = 'started',
-  Deuce = 'deuce'
-}

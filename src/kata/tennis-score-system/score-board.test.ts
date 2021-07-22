@@ -1,4 +1,6 @@
-import {BoardStatus, PlayerScore, ScoreBoard} from './score-board'
+import {ScoreBoard} from './score-board'
+import {PlayerScore} from "./player-score";
+import {BoardStatus} from "./board-status";
 
 describe('ScoreBoard', () => {
   describe('constructor', () => {
