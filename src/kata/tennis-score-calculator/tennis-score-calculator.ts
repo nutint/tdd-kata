@@ -1,5 +1,8 @@
+import {Score} from "./score";
+
 export const TennisScoreCalculator =
-  (firstScore: string = "love", secondScore: string = "love") => ({
+  (firstScore: Score = Score.Love, secondScore: Score = Score.Love) => ({
   firstPlayerScore: firstScore,
   secondPlayerScore: secondScore,
+  playerDidScore: (playerId: string) => TennisScoreCalculator(Score.Fifteen, Score.Love)
 })
