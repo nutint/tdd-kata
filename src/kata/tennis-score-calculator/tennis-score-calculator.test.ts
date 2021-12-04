@@ -1,4 +1,4 @@
-import {TennisScoreCalculator, increment} from './tennis-score-calculator'
+import {TennisScoreCalculator, incrementScore} from './tennis-score-calculator'
 import {Score} from "./score";
 import {PlayerId} from "./player-id";
 
