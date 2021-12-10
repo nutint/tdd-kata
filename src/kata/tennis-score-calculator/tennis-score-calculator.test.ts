@@ -1,4 +1,4 @@
-import {TennisScoreCalculator} from './tennis-score-calculator'
+import {TennisScoreCalculator, incrementScore} from './tennis-score-calculator'
 import {Score} from "./score";
 import {PlayerId} from "./player-id";
 
@@ -55,6 +55,35 @@ describe("TennisScoreCalculator", () => {
 
       expect(newScoreCalculator.firstPlayerScore).toEqual(Score.Love)
       expect(newScoreCalculator.secondPlayerScore).toEqual(Score.Thirty)
+    })
+
+    it("start from love-love then second player score twice, should become love-thirty", () => {
+      const newScoreCalculator = TennisScoreCalculator(Score.Love, Score.Love)
+        .playerDidScore(PlayerId.SecondPlayer)
+        .playerDidScore(PlayerId.SecondPlayer)
+
+      expect(newScoreCalculator.firstPlayerScore).toEqual(Score.Love)
+      expect(newScoreCalculator.secondPlayerScore).toEqual(Score.Thirty)
+    })
+  })
+
+  describe("incrementScore", () => {
+    it("should return fifteen when start with love", () => {
+      const actual = incrementScore(Score.Love)
+
+      expect(actual).toEqual(Score.Fifteen)
+    })
+
+    it("should return thirty when start with fifteen", () => {
+      const actual = incrementScore(Score.Fifteen)
+
+      expect(actual).toEqual(Score.Thirty)
+    })
+
+    it("should return forty when start with thirty", () => {
+      const actual = incrementScore(Score.Thirty)
+
+      expect(actual).toEqual(Score.Forty)
     })
   })
 })

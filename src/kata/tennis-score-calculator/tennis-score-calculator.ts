@@ -1,8 +1,11 @@
 import {Score} from "./score";
 import {PlayerId} from "./player-id";
 
-const incrementScore = (currentScore: Score) =>
-  currentScore === Score.Love ? Score.Fifteen : Score.Thirty;
+export const incrementScore = (currentScore: Score) => {
+  if(currentScore === Score.Love) return Score.Fifteen
+  if(currentScore === Score.Fifteen) return Score.Thirty
+  return Score.Forty
+};
 
 export const TennisScoreCalculator =
   (firstScore: Score = Score.Love, secondScore: Score = Score.Love) => ({
