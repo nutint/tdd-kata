@@ -7,11 +7,20 @@ export const incrementScore = (currentScore: Score) => {
   return Score.Forty
 };
 
-export const TennisScoreCalculator =
-  (firstScore: Score = Score.Love, secondScore: Score = Score.Love) => ({
+export const TennisScoreCalculator = (
+  firstScore: Score = Score.Love,
+  secondScore: Score = Score.Love,
+  winner: PlayerId = PlayerId.NoPlayer) => ({
   firstPlayerScore: firstScore,
   secondPlayerScore: secondScore,
-  playerDidScore: (playerId: PlayerId) => playerId == PlayerId.FirstPlayer
-    ? TennisScoreCalculator(incrementScore(firstScore), Score.Love)
-    : TennisScoreCalculator(Score.Love, incrementScore(secondScore))
+  winner,
+  deuce: firstScore === Score.Forty && secondScore == Score.Forty,
+  playerDidScore: (playerId: PlayerId) => {
+    if(playerId === PlayerId.FirstPlayer) {
+      return TennisScoreCalculator(incrementScore(firstScore), secondScore)
+    }
+    return secondScore !== Score.Forty
+      ? TennisScoreCalculator(firstScore, incrementScore(secondScore))
+      : TennisScoreCalculator(Score.Love, Score.Love, PlayerId.SecondPlayer)
+  }
 })

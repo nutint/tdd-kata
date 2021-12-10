@@ -1,4 +1,4 @@
-import {TennisScoreCalculator, incrementScore} from './tennis-score-calculator'
+import {incrementScore, TennisScoreCalculator} from './tennis-score-calculator'
 import {Score} from "./score";
 import {PlayerId} from "./player-id";
 
@@ -9,11 +9,13 @@ describe("TennisScoreCalculator", () => {
       expect(() => TennisScoreCalculator()).not.toThrow()
     })
 
-    it("should start with first and second player score `love - love`", () => {
+    it("should start with first and second player score `love - love`, and winner is null", () => {
       const tennisScoreCalculator = TennisScoreCalculator();
 
       expect(tennisScoreCalculator.firstPlayerScore).toEqual(Score.Love)
       expect(tennisScoreCalculator.secondPlayerScore).toEqual(Score.Love)
+      expect(tennisScoreCalculator.winner).toEqual(PlayerId.NoPlayer)
+      expect(tennisScoreCalculator.deuce).toEqual(false)
     })
 
     it("should be able to initialize the initial score", () => {
@@ -64,6 +66,22 @@ describe("TennisScoreCalculator", () => {
 
       expect(newScoreCalculator.firstPlayerScore).toEqual(Score.Love)
       expect(newScoreCalculator.secondPlayerScore).toEqual(Score.Thirty)
+    })
+
+    it("current score is fifteen-forty then second player score then second player wins", () => {
+      const newScoreCalculator = TennisScoreCalculator(Score.Fifteen, Score.Forty)
+        .playerDidScore(PlayerId.SecondPlayer);
+
+      expect(newScoreCalculator.winner).toEqual(PlayerId.SecondPlayer);
+      expect(newScoreCalculator.firstPlayerScore).toEqual(Score.Love);
+      expect(newScoreCalculator.secondPlayerScore).toEqual(Score.Love);
+    })
+
+    it("current score is thirty-forty then first player score then deuce is true", () => {
+      const newScoreCalculator = TennisScoreCalculator(Score.Thirty, Score.Forty)
+        .playerDidScore(PlayerId.FirstPlayer);
+
+      expect(newScoreCalculator.deuce).toEqual(true);
     })
   })
 
